@@ -1,1 +1,1859 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Beneficio CITEC</title>
+
+<style>
+
+/* ================================================= */
+/* GENERAL */
+/* ================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: #123;
+
+    overflow-x: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0047ab 0%,
+            #0077d9 30%,
+            #00b8ef 65%,
+            #0067c9 100%
+        );
+}
+
+
+/* ================================================= */
+/* PRIMERA PANTALLA - REGALO */
+/* ================================================= */
+
+#regalo {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    background:
+
+        radial-gradient(
+            circle at 12% 10%,
+            rgba(255,255,255,0.80) 0%,
+            rgba(255,255,255,0.20) 15%,
+            rgba(255,255,255,0) 35%
+        ),
+
+        radial-gradient(
+            circle at 88% 85%,
+            rgba(255,210,28,0.65) 0%,
+            rgba(255,210,28,0.15) 20%,
+            rgba(255,210,28,0) 42%
+        ),
+
+        linear-gradient(
+            135deg,
+            #003b91 0%,
+            #0067c9 28%,
+            #00b9ef 60%,
+            #007bd4 82%,
+            #0047ab 100%
+        );
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    overflow: hidden;
+}
+
+
+/* ================================================= */
+/* BRILLOS */
+/* ================================================= */
+
+#regalo::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    top: -220px;
+    right: -170px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.65),
+            rgba(255,255,255,0)
+        );
+}
+
+
+#regalo::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    bottom: -300px;
+    left: -220px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,210,28,0.55),
+            rgba(255,210,28,0)
+        );
+}
+
+
+/* ================================================= */
+/* TEXTO DEL REGALO */
+/* ================================================= */
+
+.texto-regalo {
+
+    position: absolute;
+
+    top: calc(50% - 360px);
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: #0057b8;
+
+    font-size: 28px;
+
+    font-weight: 900;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+    padding: 11px 24px;
+
+    background: rgba(255,255,255,0.98);
+
+    border-radius: 18px;
+
+    border: 4px solid #ffd21c;
+
+    z-index: 50;
+
+    text-shadow:
+        0 2px 3px rgba(0,0,0,0.15);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.25),
+        0 0 25px rgba(255,255,255,0.35);
+
+    animation: aparecerTexto 1s ease;
+}
+
+
+/* ================================================= */
+/* REGALO */
+/* ================================================= */
+
+.regalo {
+
+    position: relative;
+
+    width: 190px;
+
+    height: 210px;
+
+    margin-top: 40px;
+
+    animation: entradaRegalo 1s ease;
+
+    z-index: 10;
+}
+
+
+.caja {
+
+    position: absolute;
+
+    width: 170px;
+
+    height: 120px;
+
+    left: 10px;
+
+    bottom: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0066cc,
+            #00aeea
+        );
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.35);
+
+    z-index: 2;
+
+    animation:
+        desaparecerCaja 1.2s ease forwards;
+
+    animation-delay: 2.7s;
+}
+
+
+.caja::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 28px;
+
+    height: 100%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffe45c,
+            #ffb900
+        );
+}
+
+
+.caja::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 25px;
+
+    bottom: 0;
+
+    left: 0;
+
+    background:
+        rgba(0,0,0,0.08);
+}
+
+
+/* ================================================= */
+/* TAPA */
+/* ================================================= */
+
+.tapa {
+
+    position: absolute;
+
+    width: 190px;
+
+    height: 42px;
+
+    left: 0;
+
+    top: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0074d9,
+            #00c4f0
+        );
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 10px 20px rgba(0,0,0,0.3);
+
+    z-index: 5;
+
+    transform-origin: left bottom;
+
+    animation:
+        abrirTapa 1.5s ease-in-out forwards,
+        desaparecerTapa 0.8s ease forwards;
+
+    animation-delay:
+        1s,
+        2.7s;
+}
+
+
+.cinta-tapa {
+
+    position: absolute;
+
+    width: 28px;
+
+    height: 42px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffe45c,
+            #ffb900
+        );
+}
+
+
+/* ================================================= */
+/* LAZO */
+/* ================================================= */
+
+.lazo {
+
+    position: absolute;
+
+    top: 10px;
+
+    left: 50%;
+
+    width: 65px;
+
+    height: 40px;
+
+    transform: translateX(-50%);
+
+    z-index: 10;
+
+    animation:
+        desaparecerLazo 0.8s ease forwards;
+
+    animation-delay: 2.7s;
+}
+
+
+.lazo::before,
+.lazo::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 35px;
+
+    height: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe45c,
+            #ffb900
+        );
+
+    border-radius:
+        50% 50% 10% 50%;
+
+    top: 0;
+}
+
+
+.lazo::before {
+
+    left: 0;
+
+    transform: rotate(25deg);
+}
+
+
+.lazo::after {
+
+    right: 0;
+
+    transform: rotate(-25deg);
+}
+
+
+/* ================================================= */
+/* ESTRELLAS */
+/* ================================================= */
+
+.estrella {
+
+    position: absolute;
+
+    z-index: 5;
+
+    font-size: 32px;
+
+    opacity: 0;
+
+    animation:
+        aparecerEstrella 0.6s ease forwards,
+        flotarEstrella 2.5s ease-in-out infinite;
+
+    filter:
+        drop-shadow(
+            0 0 8px rgba(255,255,255,0.9)
+        );
+}
+
+
+.e1 { color: #ffe600; }
+.e2 { color: #ff4fc3; }
+.e3 { color: #7c4dff; }
+.e4 { color: #00ff91; }
+.e5 { color: #ff8a00; }
+.e6 { color: #00e5ff; }
+.e7 { color: #ff3b3b; }
+.e8 { color: #a855f7; }
+
+
+.e1 {
+    top: 20%;
+    left: 18%;
+}
+
+.e2 {
+    top: 28%;
+    right: 18%;
+}
+
+.e3 {
+    top: 48%;
+    left: 10%;
+}
+
+.e4 {
+    top: 45%;
+    right: 10%;
+}
+
+.e5 {
+    top: 70%;
+    left: 22%;
+}
+
+.e6 {
+    top: 68%;
+    right: 22%;
+}
+
+.e7 {
+    top: 18%;
+    left: 48%;
+}
+
+.e8 {
+    top: 75%;
+    right: 45%;
+}
+
+
+/* ================================================= */
+/* PREMIO REGALO */
+/* ================================================= */
+
+.premio-regalo {
+
+    position: absolute;
+
+    bottom: 13%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: #0057b8;
+
+    font-size: 30px;
+
+    font-weight: 900;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+    opacity: 0;
+
+    padding: 12px 22px;
+
+    background: rgba(255,255,255,0.98);
+
+    border-radius: 18px;
+
+    border: 4px solid #ffd21c;
+
+    z-index: 50;
+
+    text-shadow:
+        0 2px 3px rgba(0,0,0,0.15);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.25),
+        0 0 25px rgba(255,255,255,0.35);
+
+    animation:
+        aparecerPremio 1s ease forwards;
+
+    animation-delay: 3.2s;
+}
+
+
+/* ================================================= */
+/* ANIMACIONES */
+/* ================================================= */
+
+@keyframes entradaRegalo {
+
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+@keyframes abrirTapa {
+
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform:
+            translate(-20px,-55px)
+            rotate(-25deg);
+    }
+}
+
+
+@keyframes desaparecerCaja {
+
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.75);
+    }
+}
+
+
+@keyframes desaparecerTapa {
+
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+@keyframes desaparecerLazo {
+
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+@keyframes aparecerEstrella {
+
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+@keyframes flotarEstrella {
+
+    0% {
+        transform:
+            translateY(0)
+            scale(1)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-70px)
+            scale(1.2)
+            rotate(20deg);
+    }
+
+    100% {
+        transform:
+            translateY(-140px)
+            scale(0.9)
+            rotate(40deg);
+    }
+}
+
+
+@keyframes aparecerTexto {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+}
+
+
+@keyframes aparecerPremio {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            scale(1);
+    }
+}
+
+
+/* ================================================= */
+/* OCULTO */
+/* ================================================= */
+
+.oculto {
+    display: none !important;
+}
+
+
+/* ================================================= */
+/* PANTALLAS 2 Y 3 */
+/* ================================================= */
+
+section {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    padding: 35px 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 8% 8%,
+            rgba(255,255,255,0.75) 0%,
+            rgba(255,255,255,0.18) 16%,
+            rgba(255,255,255,0) 36%
+        ),
+
+        radial-gradient(
+            circle at 92% 90%,
+            rgba(255,210,28,0.75) 0%,
+            rgba(255,210,28,0.18) 20%,
+            rgba(255,210,28,0) 42%
+        ),
+
+        linear-gradient(
+            135deg,
+            #003b91 0%,
+            #0067c9 30%,
+            #00b9ef 65%,
+            #007bd4 100%
+        );
+}
+
+
+section::before {
+
+    content: "";
+
+    position: absolute;
+
+    width:
+        calc(100% - 30px);
+
+    max-width: 560px;
+
+    top: 18px;
+
+    bottom: 18px;
+
+    background:
+        rgba(255,255,255,0.98);
+
+    border-radius: 28px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.25);
+
+    z-index: 0;
+}
+
+
+section::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+
+    height: 420px;
+
+    top: -180px;
+
+    right: -150px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.65),
+            rgba(255,255,255,0)
+        );
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+section > * {
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* ================================================= */
+/* CONTENIDO */
+/* ================================================= */
+
+.logo-imagen {
+
+    width: 190px;
+
+    max-width: 80%;
+
+    display: block;
+
+    margin: 0 auto 10px;
+}
+
+
+.etiqueta {
+
+    display: inline-block;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe45c,
+            #ffbd00
+        );
+
+    color: #0057b8;
+
+    font-weight: 900;
+
+    padding: 8px 15px;
+
+    border-radius: 20px;
+
+    margin-bottom: 12px;
+
+    box-shadow:
+        0 5px 12px rgba(0,0,0,0.15);
+}
+
+
+h1 {
+
+    color: #0057b8;
+
+    font-size: 30px;
+
+    margin: 8px 0 12px;
+}
+
+
+.descripcion {
+
+    max-width: 430px;
+
+    color: #444;
+
+    font-size: 17px;
+
+    line-height: 1.5;
+
+    margin-bottom: 20px;
+}
+
+
+/* ================================================= */
+/* CARRERAS */
+/* ================================================= */
+
+.carreras {
+
+    width: 100%;
+
+    max-width: 480px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    padding: 0 5px;
+}
+
+
+.carrera {
+
+    border: none;
+
+    padding: 12px 14px;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0059c7,
+            #00aeea
+        );
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 12px rgba(0,0,0,0.18);
+
+    transition: 0.2s;
+}
+
+
+.carrera:hover {
+
+    transform: translateY(-2px);
+
+    background:
+        linear-gradient(
+            90deg,
+            #00449f,
+            #0095d9
+        );
+}
+
+
+/* ================================================= */
+/* TÉRMINOS */
+/* ================================================= */
+
+.terminos {
+
+    max-width: 430px;
+
+    margin-top: 14px;
+
+    color: #777;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+
+/* ================================================= */
+/* RESULTADO */
+/* ================================================= */
+
+.premio-icono {
+
+    font-size: 50px;
+
+    margin: 5px 0;
+}
+
+
+.premio {
+
+    width: 100%;
+
+    max-width: 430px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e8f9ff,
+            #ffffff
+        );
+
+    border-left:
+        6px solid #ffd21c;
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+    margin: 15px 0;
+}
+
+
+.gratis {
+
+    color: #0057b8;
+
+    font-size: 25px;
+
+    font-weight: 900;
+
+    margin-bottom: 10px;
+}
+
+
+.nombre-carrera {
+
+    color: #333;
+
+    font-weight: bold;
+
+    font-size: 17px;
+}
+
+
+/* ================================================= */
+/* WHATSAPP */
+/* ================================================= */
+
+.whatsapp {
+
+    display: block;
+
+    width: 100%;
+
+    max-width: 430px;
+
+    padding: 17px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #25D366,
+            #13b957
+        );
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 6px 15px rgba(0,0,0,0.2);
+}
+
+
+.volver {
+
+    margin-top: 15px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #0057b8;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+
+/* ================================================= */
+/* ================================================= */
+/* CELULAR - CORRECCIÓN PRINCIPAL */
+/* ================================================= */
+/* ================================================= */
+
+@media (max-width: 480px) {
+
+
+    /*
+       LA SECCIÓN OCUPA LA ALTURA DISPONIBLE
+       Y EL CONTENIDO SE CENTRA VERTICALMENTE.
+    */
+
+    section {
+
+        width: 100%;
+
+        min-height: 100vh;
+
+        height: auto;
+
+        padding:
+            20px 10px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        align-items: center;
+
+        overflow-y: auto;
+
+        overflow-x: hidden;
+    }
+
+
+    /*
+       EL CUADRO BLANCO SE CENTRA
+       JUNTO CON EL CONTENIDO.
+    */
+
+    section::before {
+
+        width:
+            calc(100% - 20px);
+
+        max-width:
+            560px;
+
+        top:
+            50%;
+
+        bottom:
+            auto;
+
+        height:
+            calc(100% - 40px);
+
+        transform:
+            translateY(-50%);
+
+        border-radius:
+            22px;
+
+        box-shadow:
+            none;
+    }
+
+
+    /* ================================================= */
+    /* SEGUNDA PANTALLA */
+    /* ================================================= */
+
+    #inicio {
+
+        min-height:
+            100vh;
+
+        height:
+            auto;
+
+        justify-content:
+            center;
+
+        padding:
+            20px 15px;
+    }
+
+
+    #inicio::before {
+
+        top:
+            50%;
+
+        height:
+            calc(100% - 40px);
+
+        transform:
+            translateY(-50%);
+
+        box-shadow:
+            none;
+    }
+
+
+    /* ================================================= */
+    /* TERCERA PANTALLA */
+    /* ================================================= */
+
+    #resultado {
+
+        min-height:
+            100vh;
+
+        height:
+            auto;
+
+        justify-content:
+            center;
+
+        padding:
+            20px 15px;
+    }
+
+
+    #resultado::before {
+
+        top:
+            50%;
+
+        height:
+            calc(100% - 40px);
+
+        transform:
+            translateY(-50%);
+
+        box-shadow:
+            none;
+    }
+
+
+    /* ================================================= */
+    /* LOGO */
+/* ================================================= */
+
+    .logo-imagen {
+
+        width:
+            145px;
+
+        max-width:
+            75%;
+
+        margin:
+            0 auto 7px;
+    }
+
+
+    /* ================================================= */
+    /* ETIQUETA */
+    /* ================================================= */
+
+    .etiqueta {
+
+        font-size:
+            14px;
+
+        padding:
+            7px 13px;
+
+        margin-bottom:
+            8px;
+    }
+
+
+    /* ================================================= */
+    /* DESCRIPCIÓN */
+    /* ================================================= */
+
+    .descripcion {
+
+        font-size:
+            15px;
+
+        line-height:
+            1.4;
+
+        margin-top:
+            5px;
+
+        margin-bottom:
+            12px;
+
+        max-width:
+            350px;
+    }
+
+
+    /* ================================================= */
+    /* CARRERAS */
+    /* ================================================= */
+
+    .carreras {
+
+        width:
+            100%;
+
+        max-width:
+            400px;
+
+        gap:
+            7px;
+
+        padding:
+            0 2px;
+    }
+
+
+    .carrera {
+
+        width:
+            100%;
+
+        font-size:
+            13px;
+
+        padding:
+            10px;
+
+        border-radius:
+            11px;
+    }
+
+
+    /* ================================================= */
+    /* TÉRMINOS */
+    /* ================================================= */
+
+    .terminos {
+
+        max-width:
+            350px;
+
+        margin-top:
+            9px;
+
+        margin-bottom:
+            0;
+
+        font-size:
+            11px;
+
+        line-height:
+            1.35;
+    }
+
+
+    /* ================================================= */
+    /* RESULTADO */
+    /* ================================================= */
+
+    .premio-icono {
+
+        font-size:
+            42px;
+    }
+
+
+    h1 {
+
+        font-size:
+            26px;
+    }
+
+
+    .gratis {
+
+        font-size:
+            22px;
+    }
+
+
+    /* ================================================= */
+    /* PRIMERA PANTALLA */
+    /* ================================================= */
+
+    .texto-regalo {
+
+        top:
+            calc(50% - 300px);
+
+        font-size:
+            23px;
+
+        padding:
+            10px 18px;
+
+        max-width:
+            94%;
+    }
+
+
+    .regalo {
+
+        transform:
+            scale(0.9);
+
+        margin-top:
+            30px;
+    }
+
+
+    .premio-regalo {
+
+        font-size:
+            24px;
+
+        padding:
+            10px 16px;
+
+        bottom:
+            12%;
+
+        max-width:
+            94%;
+    }
+
+}
+
+
+/* ================================================= */
+/* CELULARES MUY BAJOS */
+/* ================================================= */
+
+@media (max-height: 700px) and (max-width: 480px) {
+
+    section {
+
+        min-height:
+            100vh;
+
+        padding:
+            12px 10px;
+    }
+
+
+    #inicio {
+
+        min-height:
+            100vh;
+
+        padding:
+            12px 15px;
+    }
+
+
+    #resultado {
+
+        min-height:
+            100vh;
+
+        padding:
+            15px;
+    }
+
+
+    .logo-imagen {
+
+        width:
+            135px;
+    }
+
+
+    .descripcion {
+
+        margin-bottom:
+            9px;
+    }
+
+
+    .carreras {
+
+        gap:
+            6px;
+    }
+
+
+    .carrera {
+
+        padding:
+            9px 10px;
+
+        font-size:
+            12.5px;
+    }
+
+
+    .terminos {
+
+        margin-top:
+            7px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================================================= -->
+<!-- PRIMERA PANTALLA -->
+<!-- ================================================= -->
+
+<div id="regalo">
+
+
+    <div class="texto-regalo">
+
+        🎁 ¡ABRE TU REGALO! 🎁
+
+    </div>
+
+
+    <div class="regalo">
+
+
+        <div class="estrella e1">★</div>
+        <div class="estrella e2">★</div>
+        <div class="estrella e3">✦</div>
+        <div class="estrella e4">★</div>
+        <div class="estrella e5">✦</div>
+        <div class="estrella e6">★</div>
+        <div class="estrella e7">✦</div>
+        <div class="estrella e8">★</div>
+
+
+        <div class="caja"></div>
+
+
+        <div class="tapa">
+
+            <div class="cinta-tapa"></div>
+
+        </div>
+
+
+        <div class="lazo"></div>
+
+
+    </div>
+
+
+    <div class="premio-regalo">
+
+        🎉 ¡OBTUVISTE UN PREMIO! 🎉
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- SEGUNDA PANTALLA -->
+<!-- ================================================= -->
+
+<section id="inicio" class="oculto">
+
+
+    <img
+        src="logo-citec.webp"
+        class="logo-imagen"
+        alt="Logo CITEC"
+    >
+
+
+    <div class="etiqueta">
+
+        🎁 RECLAMA TU PREMIO
+
+    </div>
+
+
+    <p class="descripcion">
+
+        Selecciona la carrera que te interesa
+        y descubre la sorpresa que tenemos para ti.
+
+    </p>
+
+
+    <div class="carreras">
+
+
+        <button
+            class="carrera"
+            onclick="seleccionar('Operación de Equipos Pesados')"
+        >
+            🚜 Operación de Equipos Pesados
+        </button>
+
+
+        <button
+            class="carrera"
+            onclick="seleccionar('Mantenimiento de Equipos Pesados')"
+        >
+            🔧 Mantenimiento de Equipos Pesados
+        </button>
+
+
+        <button
+            class="carrera"
+            onclick="seleccionar('Seguridad Minera, Industrial y Medio Ambiente')"
+        >
+            🦺 Seguridad Minera, Industrial y Medio Ambiente
+        </button>
+
+
+        <button
+            class="carrera"
+            onclick="seleccionar('Soldadura')"
+        >
+            🔥 Soldadura
+        </button>
+
+
+        <button
+            class="carrera"
+            onclick="seleccionar('Control de Procesos de Almacenamiento')"
+        >
+            📦 Control de Procesos de Almacenamiento
+        </button>
+
+
+        <button
+            class="carrera"
+            onclick="seleccionar('Asistente Administrativo')"
+        >
+            💼 Asistente Administrativo
+        </button>
+
+
+        <button
+            class="carrera"
+            onclick="seleccionar('Operación de Computadoras')"
+        >
+            💻 Operación de Computadoras
+        </button>
+
+
+        <button
+            class="carrera"
+            onclick="seleccionar('Topografía')"
+        >
+            📐 Topografía
+        </button>
+
+
+        <button
+            class="carrera"
+            onclick="seleccionar('Operaciones Administrativas en Obras Civiles')"
+        >
+            🏗️ Operaciones Administrativas en Obras Civiles
+        </button>
+
+
+        <button
+            class="carrera"
+            onclick="seleccionar('Operaciones Constructivas en Obras Civiles')"
+        >
+            🏗️ Operaciones Constructivas en Obras Civiles
+        </button>
+
+
+    </div>
+
+
+    <div class="terminos">
+
+        Promoción sujeta a términos,
+        condiciones y vigencia de la campaña.
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ================================================= -->
+<!-- TERCERA PANTALLA -->
+<!-- ================================================= -->
+
+<section id="resultado" class="oculto">
+
+
+    <img
+        src="logo-citec.webp"
+        class="logo-imagen"
+        alt="Logo CITEC"
+    >
+
+
+    <div class="premio-icono">
+
+        🎉
+
+    </div>
+
+
+    <h1>
+
+        ¡FELICIDADES!
+
+    </h1>
+
+
+    <div class="premio">
+
+
+        <div class="gratis">
+
+            🎓 50% DE DESCUENTO EN MI PRIMERA MENSUALIDAD + UNIFORME GRATIS
+
+        </div>
+
+
+        <div
+            class="nombre-carrera"
+            id="carreraElegida"
+        ></div>
+
+
+    </div>
+
+
+    <p class="descripcion">
+
+        ¡Has obtenido el beneficio de
+        <strong>50% DE DESCUENTO EN MI PRIMERA MENSUALIDAD + UNIFORME GRATIS</strong>!
+
+        <br><br>
+
+        Para reclamarlo, escríbenos
+        por WhatsApp.
+
+    </p>
+
+
+    <a
+        id="botonWhatsApp"
+        class="whatsapp"
+        href="#"
+        target="_blank"
+        rel="noopener"
+    >
+
+        📲 RECLAMAR MI BENEFICIO
+
+    </a>
+
+
+    <button
+        class="volver"
+        onclick="volver()"
+    >
+
+        ← Elegir otra carrera
+
+    </button>
+
+
+    <div class="terminos">
+
+        El beneficio está sujeto a los términos,
+        condiciones y vigencia establecidos por CITEC.
+
+    </div>
+
+
+</section>
+
+
+
+<script>
+
+/* ================================================= */
+/* MOSTRAR SEGUNDA PANTALLA */
+/* ================================================= */
+
+setTimeout(function() {
+
+    document
+        .getElementById("regalo")
+        .style.display = "none";
+
+
+    document
+        .getElementById("inicio")
+        .classList.remove("oculto");
+
+
+    window.scrollTo(0, 0);
+
+}, 5000);
+
+
+/* ================================================= */
+/* SELECCIONAR CARRERA */
+/* ================================================= */
+
+function seleccionar(carrera) {
+
+    document
+        .getElementById("inicio")
+        .classList.add("oculto");
+
+
+    document
+        .getElementById("resultado")
+        .classList.remove("oculto");
+
+
+    document
+        .getElementById("carreraElegida")
+        .innerText = carrera;
+
+
+    let mensaje =
+
+`🎉 ¡Hola CITEC!
+
+He seleccionado la carrera de *${carrera}* y he obtenido el beneficio de *50% DE DESCUENTO EN MI PRIMERA MENSUALIDAD + UNIFORME GRATIS*.
+
+Quiero reclamar mi beneficio. 🎓`;
+
+
+    let enlace =
+        "https://wa.me/51944256496?text="
+        +
+        encodeURIComponent(mensaje);
+
+
+    document
+        .getElementById("botonWhatsApp")
+        .href = enlace;
+
+
+    window.scrollTo(0, 0);
+
+}
+
+
+/* ================================================= */
+/* VOLVER */
+/* ================================================= */
+
+function volver() {
+
+    document
+        .getElementById("resultado")
+        .classList.add("oculto");
+
+
+    document
+        .getElementById("inicio")
+        .classList.remove("oculto");
+
+
+    window.scrollTo(0, 0);
+
+}
+
+</script>
+
+</body>
+</html>
